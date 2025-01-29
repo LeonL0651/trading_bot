@@ -1,5 +1,4 @@
 import pandas as pd
-import talib
 
 class StrategyEngine:
     def __init__(self, data_handler):
@@ -59,3 +58,30 @@ class StrategyEngine:
         # Sortieren nach Liquidität (absteigend)
         profitable_pairs.sort(key=lambda x: x['liquidity'], reverse=True)
         return profitable_pairs
+
+    def calculate_sma(self, df, period=50):
+        """Berechnet den Simple Moving Average"""
+        df['sma'] = df['close'].rolling(window=period).mean()
+        return df
+
+    def calculate_rsi(self, df, period=14):
+        """Berechnet den Relative Strength Index"""
+        delta = df['close'].diff()
+        gain = delta.where(delta > 0, 0.0)
+        loss = -delta.where(delta < 0, 0.0)
+        
+        avg_gain = gain.ewm(alpha=1/period, adjust=False).mean()
+        avg_loss = loss.ewm(alpha=1/period, adjust=False).mean()
+        
+        rs = avg_gain / avg_loss
+        df['rsi'] = 100 - (100 / (1 + rs))
+        df['rsi'].fillna(100.0, inplace=True)  # Handle division by zero
+        return df
+
+    def calculate_macd(self, df):
+        """Berechnet MACD und Signal-Linie"""
+        ema12 = df['close'].ewm(span=12, adjust=False).mean()
+        ema26 = df['close'].ewm(span=26, adjust=False).mean()
+        df['macd'] = ema12 - ema26
+        df['macdsignal'] = df['macd'].ewm(span=9, adjust=False).mean()
+        return df
