@@ -39,7 +39,3 @@ MIT License - Feel free to:
 - Private use
 
 **No warranty provided**
-
----
-
-**Remember:** This is purely educational code - coffee money ≠ rent money! ☕➡️💸
