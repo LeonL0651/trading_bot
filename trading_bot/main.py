@@ -33,7 +33,7 @@ tax_reporter = TaxReporter()
 api_client = APIClient(SOCIAL_TRADING_API_URL, SOCIAL_TRADING_API_KEY)
 social_trading = SocialTrading(api_client)
 i18n = I18n(language="en")
-a
+
 # Dashboard-Metriken
 def get_metrics():
     return {
