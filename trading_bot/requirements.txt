@@ -9,3 +9,4 @@ pyyaml
 cryptography
 requests
 websockets
+rich
