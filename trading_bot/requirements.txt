@@ -1,0 +1,11 @@
+ccxt
+pandas
+numpy
+ta-lib
+scikit-learn
+tensorflow
+flask
+pyyaml
+cryptography
+requests
+websockets
