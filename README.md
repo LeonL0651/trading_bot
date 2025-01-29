@@ -1,4 +1,4 @@
-# Deepseek Bot Project 🤖
+# Trading Bot Project 🤖
 
 **Welcome!** This is a Python-based bot project created for educational purposes while exploring GitHub and Python programming. 
 
